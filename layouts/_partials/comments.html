@@ -1,0 +1,31 @@
+{{- /*
+  Waline 评论组件
+  ---------------------------------------------------------------
+  用法：在 hugo.toml 的 [params.waline] 里填 serverURL，评论框就会出现；
+  serverURL 为空时本文件不输出任何内容，站点行为与没有评论时完全一致。
+  地址形如 https://xxx.ap-shanghai.service.tcloudbase.com/waline
+*/ -}}
+{{- with site.Params.waline }}
+{{- if .serverURL }}
+<h2 class="post-title">评论</h2>
+<div id="waline" style="margin-top: 1rem;"></div>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css">
+<script type="module">
+  import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+
+  init({
+    el: '#waline',
+    serverURL: {{ .serverURL | jsonify | safeJS }},
+    lang: {{ (.lang | default "zh-CN") | jsonify | safeJS }},
+    // PaperMod 把主题写在 <html data-theme="..."> 上，跟着站点一起切换深浅色
+    dark: 'html[data-theme="dark"]',
+    login: {{ (.login | default "disable") | jsonify | safeJS }},
+    meta: {{ (.meta | default (slice "nick" "mail" "link")) | jsonify | safeJS }},
+    requiredMeta: {{ (.requiredMeta | default (slice "nick")) | jsonify | safeJS }},
+    emoji: {{ (.emoji | default (slice "https://unpkg.com/@waline/emojis@1.2.0/weibo")) | jsonify | safeJS }},
+    pageSize: {{ .pageSize | default 10 }},
+    wordLimit: {{ .wordLimit | default 2000 }},
+  });
+</script>
+{{- end }}
+{{- end }}

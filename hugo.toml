@@ -48,6 +48,19 @@ theme = "PaperMod"
   hidemeta = false
   hideSummary = false
 
+  # 评论开关：single.html 靠这个参数决定是否加载 _partials/comments.html
+  comments = true
+
+  # Waline 评论（serverURL 留空 = 不显示评论框；后端部署好后填上即可）
+  [params.waline]
+    serverURL = ""
+    lang = "zh-CN"
+    # disable = 允许匿名评论（只填昵称），不需要注册登录
+    login = "disable"
+    meta = ["nick", "mail", "link"]
+    requiredMeta = ["nick"]
+    emoji = ["https://unpkg.com/@waline/emojis@1.2.0/weibo"]
+
   # 首页顶部自我介绍
   [params.homeInfoParams]
     Title = "你好，我是半页代码 👋"

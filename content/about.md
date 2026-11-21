@@ -4,6 +4,7 @@ date: 2026-11-15T10:00:00+08:00
 draft: false
 summary: "关于这个站和写它的人。"
 ShowToc: false
+comments: false
 ---
 
 ## 这个站
