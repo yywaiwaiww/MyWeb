@@ -1,0 +1,17 @@
+# 构建产物
+/public/
+/resources/
+/_gen/
+.hugo_build.lock
+
+# 本地工具（hugo.exe 22MB，不入库；Actions 里会自己装）
+/.tools/
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+
+# 系统
+Thumbs.db
+.DS_Store

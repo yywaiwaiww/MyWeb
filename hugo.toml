@@ -1,0 +1,108 @@
+# ---------------------------------------------------------------
+# 站点基础设置
+# baseURL 部署时由 GitHub Actions 自动注入，本地预览用下面这个占位值
+# ---------------------------------------------------------------
+baseURL = "/"
+title = "半页代码"
+locale = "zh-CN"
+defaultContentLanguage = "zh"
+hasCJKLanguage = true
+enableRobotsTXT = true
+enableEmoji = true
+theme = "PaperMod"
+
+# 文章列表每页条数（Hugo 0.128 之后用 pagination.pagerSize）
+[pagination]
+  pagerSize = 10
+
+# PaperMod 的搜索页依赖首页输出 JSON
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+# ---------------------------------------------------------------
+# 主题参数
+# ---------------------------------------------------------------
+[params]
+  # 首页只聚合 posts 目录下的文章
+  mainSections = ["posts"]
+  env = "production"
+  title = "半页代码"
+  description = "一个人的技术博客：写着写着就长出了自己的想法。"
+  keywords = ["博客", "技术", "笔记"]
+  author = "半页代码"
+  DateFormat = "2006-01-02"
+  defaultTheme = "auto"
+  disableThemeToggle = false
+
+  # 阅读体验
+  ShowReadingTime = true
+  ShowWordCount = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowToc = true
+  TocOpen = false
+  UseHugoToc = true
+  ShowRssButtonInSectionTermList = true
+  hidemeta = false
+  hideSummary = false
+
+  # 首页顶部自我介绍
+  [params.homeInfoParams]
+    Title = "你好，我是半页代码 👋"
+    Content = """
+这里记录我在写代码、读书和折腾工具时留下的一些东西。
+
+大多是踩坑记录和想明白之后才敢写下的结论，偶尔也有没什么用但挺好玩的思考。
+"""
+
+      [[params.socialIcons]]
+      name = "github"
+      url = "https://github.com/"
+    [[params.socialIcons]]
+      name = "rss"
+      url = "index.xml"
+
+# ---------------------------------------------------------------
+# 导航菜单
+# ---------------------------------------------------------------
+[[menu.main]]
+  identifier = "posts"
+  name = "文章"
+  url = "/posts/"
+  weight = 10
+
+[[menu.main]]
+  identifier = "tags"
+  name = "标签"
+  url = "/tags/"
+  weight = 20
+
+[[menu.main]]
+  identifier = "search"
+  name = "搜索"
+  url = "/search/"
+  weight = 30
+
+[[menu.main]]
+  identifier = "about"
+  name = "关于"
+  url = "/about/"
+  weight = 40
+
+# ---------------------------------------------------------------
+# Markdown 渲染
+# ---------------------------------------------------------------
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNos = false
+    noClasses = true
+  [markup.goldmark.renderer]
+    # 允许在文章里直接写 HTML（比如嵌入视频、iframe）
+    unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
